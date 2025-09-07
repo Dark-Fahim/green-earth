@@ -24,12 +24,18 @@
         * {
             font-family: "Inter", sans-serif;
         }
-        .primary-btn{
+
+        .primary-btn {
             background-color: #FACC15;
             color: #15803D;
             border-radius: 999px;
             padding: 10px 20px;
 
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -37,25 +43,27 @@
 <body>
     <header>
         <div class="navbar bg-[#15803D] text-white shadow-sm">
-            <div class="navbar-start">
-                <div class="dropdown">
-                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h8m-8 6h16" />
-                        </svg>
+            <div class="container">
+                <div class="navbar-start">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <li><a>About</a></li>
+                            <li>
+                                <a href="">Gallery</a>
+                            </li>
+                            <li><a>Plant a Tree</a></li>
+                        </ul>
                     </div>
-                    <ul tabindex="0"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>About</a></li>
-                        <li>
-                            <a href="">Gallery</a>
-                        </li>
-                        <li><a>Plant a Tree</a></li>
-                    </ul>
+                    <a class="btn btn-ghost text-xl">Green Earth</a>
                 </div>
-                <a class="btn btn-ghost text-xl">Green Earth</a>
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
@@ -67,7 +75,24 @@
                 </ul>
             </div>
             <div class="navbar-end">
-                <a class="primary-btn">Plant a Tree</a>
+                <a class="primary-btn btn">Plant a Tree</a>
+            </div>
+        </div>
+
+        <div class="banner relative bg-[#CFF0DC]">
+            <img class="absolute hidden md:flex bottom-0 left-0" src="./assets/hero-leaf1.png" alt="">
+            <img class="absolute bottom-0 right-0" src="./assets/hero-leaf2.png" alt="">
+            <div class="hero container min-h-[400px]">
+                <div class="hero-content text-center">
+                    <div class="">
+                        <h1 class="text-5xl font-bold">Plant a Tree, Grow a Future</h1>
+                        <p class="py-6 max-w-xl">
+                            Join our mission to plant 1 million trees and make the Earth greener for future
+                            generations.
+                        </p>
+                        <button class="btn primary-btn">Get Involved</button>
+                    </div>
+                </div>
             </div>
         </div>
 
