@@ -33,6 +33,11 @@
 
         }
 
+        .active {
+            background-color: #15803D;
+            color: white;
+        }
+
         .container {
             max-width: 1170px;
             margin: 0 auto;
@@ -107,7 +112,11 @@
                 <div id="categories" class="border order-1">
                     <h2 class="text-xl font-bold my-4">Categories</h2>
                     <ul id="category-container" class="space-y-3">
-                        <li class="bg-[#15803D] text-white py-2 px-3 rounded-lg">All Trees</li>
+                        
+                        <li>
+                            <a onclick="getTrees()" id="" class="text-black font-medium cursor-pointer py-2 px-3 rounded-lg category">All
+                                Trees</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Cart -->
@@ -115,10 +124,11 @@
                     <text class="3xl">cart</text>
                 </div>
                 <!-- All trees -->
-                <div id="tree-container" class=" md:col-span-3 order-3 md:order-2  gap-7 border grid grid-cols-1 md:grid-cols-3">
-                    
+                <div id="tree-container"
+                    class=" md:col-span-3 order-3 md:order-2  gap-7 border grid grid-cols-1 md:grid-cols-3">
+
                 </div>
-                
+
 
             </div>
 
