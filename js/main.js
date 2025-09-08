@@ -7,7 +7,6 @@ getCategories()
 const displayCategories = categories => {
     const container = document.getElementById('category-container')
     categories.forEach(category => {
-        console.log(category);
         const li = document.createElement('li')
         li.innerHTML = `
         <a onclick="getCategoryById(${category.id})" id="category-${category.id}" class="text-black font-medium cursor-pointer py-2 px-3 rounded-lg category">${category.category_name}</a>
@@ -32,12 +31,12 @@ const displayTrees = trees => {
     trees.forEach(tree => {
         const div = document.createElement('div')
         div.innerHTML = `
-        <div class="card bg-base-100 shadow-sm h-full">
+        <div  class="card bg-base-100 shadow-sm h-full">
                         <figure class="aspect-[4/3]">
                             <img class="w-full aspect-[4/3]" src=${tree.image} />
                         </figure>
                         <div class="card-body">
-                            <h2 class="card-title">${tree.name}</h2>
+                            <h2 onclick="showDetails(${tree.id})" class="card-title">${tree.name}</h2>
                             <p>${tree.description}</p>
                             <div class="flex justify-between">
                                 <span class="bg-[#DCFCE7] text-[#15803D] p-1 rounded-lg">${tree.category}</span>
@@ -53,6 +52,24 @@ const displayTrees = trees => {
     });
 }
 
+const showDetails = id => {
+    console.log(id);
+    fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    .then(res => res.json())
+    .then(data => {
+        const tree = data.plants
+        console.log(tree);
+        const modalBox = document.getElementById('modal-box')
+        modalBox.innerHTML = `
+        <h2 class="text-2xl font-bold">${tree.name}</h2>
+                    <img class="" src=${tree.image} alt="">
+                    <p><span class="font-bold">Category: </span>${tree.category}</p>
+                    <p><span class="font-bold">Price: </span>$${tree.price}</p>
+                    <p><span class="font-bold">Description: </span>${tree.description}</p>
+        `
+    })
+    my_modal_5.showModal()
+}
 
 const getCategoryById = async id => {
     const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`)
@@ -78,7 +95,7 @@ const displayCategoryById = trees => {
                             <img class="w-full aspect-[4/3]" src=${tree.image} />
                         </figure>
                         <div class="card-body">
-                            <h2 class="card-title">${tree.name}</h2>
+                            <h2 onclick="showDetails(${tree.id})" class="card-title">${tree.name}</h2>
                             <p>${tree.description}</p>
                             <div class="flex justify-between">
                                 <span class="bg-[#DCFCE7] text-[#15803D] p-1 rounded-lg">${tree.category}</span>
