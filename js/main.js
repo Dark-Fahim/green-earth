@@ -27,7 +27,6 @@ getTrees()
 const displayTrees = trees => {
     const treeContainer = document.getElementById('tree-container')
     treeContainer.textContent = ''
-    console.log(trees);
     trees.forEach(tree => {
         const div = document.createElement('div')
         div.innerHTML = `
@@ -43,7 +42,7 @@ const displayTrees = trees => {
                                 <span>$${tree.price}</span>
                             </div>
                             <div class="">
-                                <button class="btn btn-primary w-full bg-[#15803D] rounded-full border-0">Add To Cart</button>
+                                <button onclick="addToCart(${tree.id})" class="btn btn-primary w-full bg-[#15803D] rounded-full border-0">Add To Cart</button>
                             </div>
                         </div>
                     </div>
@@ -52,8 +51,45 @@ const displayTrees = trees => {
     });
 }
 
+const cartItems = []
+
+const addToCart = async id => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    const data = await res.json()
+    cartItems.push(data.plants)
+    showCartItems()
+}
+
+const showCartItems = () => {
+    console.log(cartItems);
+    const cartContainer = document.getElementById('cart-container')
+    const totalPriceText = document.getElementById('total-price')
+    let totalPrice = 0
+    
+    cartContainer.textContent = ''
+    cartItems.forEach(cart => {
+        const div = document.createElement('div')
+        totalPrice = totalPrice + cart.price
+        div.innerHTML = `
+        <div class="bg-[#F0FDF4] py-2 px-3 rounded-md flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold">${cart.name}</h3>
+                                <p class="text-[#1F2937] opacity-80">${cart.price} x 1</p>
+                            </div>
+                            <div>
+                                <span class="text-[#1F2937] opacity-80 cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
+                            </div>
+
+                        </div>
+        `
+        cartContainer.append(div)
+
+    })
+    totalPriceText.innerText = totalPrice
+}
+
 const showDetails = id => {
-    console.log(id);
+    
     fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then(res => res.json())
     .then(data => {
@@ -102,7 +138,7 @@ const displayCategoryById = trees => {
                                 <span>$${tree.price}</span>
                             </div>
                             <div class="">
-                                <button class="btn btn-primary w-full bg-[#15803D] rounded-full border-0">Add To Cart</button>
+                                <button onclick="addToCart(${tree.id})" class="btn btn-primary w-full bg-[#15803D] rounded-full border-0">Add To Cart</button>
                             </div>
                         </div>
                     </div>

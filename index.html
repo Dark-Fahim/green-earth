@@ -11,12 +11,17 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/7657425e0e.js" crossorigin="anonymous"></script>
+
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
+
+
 
 
     <!-- Styles -->
@@ -121,8 +126,15 @@
                     </ul>
                 </div>
                 <!-- Cart -->
-                <div class="border order-2 md:order-3">
-                    <text class="3xl">cart</text>
+                <div class="border order-2 md:order-3 bg-white rounded-lg">
+                    <h2 class="text-xl font-bold my-4">Your Cart</h2>
+                    <div id="cart-container" class="p-3 space-y-3">
+
+                    </div>
+                    <div class="flex justify-between items-center p-3 mt-3">
+                        <h1>Total:</h1>
+                        <p > $<span id="total-price">0</span></p>
+                    </div>
                 </div>
                 <!-- All trees -->
                 <div id="tree-container"
@@ -135,11 +147,11 @@
 
         </section>
         <!-- Open the modal using ID.showModal() method -->
-        
+
         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
             <div id="" class="modal-box">
                 <div id="modal-box" class="space-y-3">
-                    
+
 
                 </div>
                 <div class="modal-action">
