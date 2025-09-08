@@ -51,7 +51,7 @@ const displayTrees = trees => {
     });
 }
 
-const cartItems = []
+let cartItems = []
 
 const addToCart = async id => {
     const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
@@ -60,8 +60,15 @@ const addToCart = async id => {
     showCartItems()
 }
 
+const removeFromCart = id => {
+    
+    const remaining = cartItems.filter(item => item.id !== id)
+    cartItems = remaining
+    showCartItems()
+
+}
+
 const showCartItems = () => {
-    console.log(cartItems);
     const cartContainer = document.getElementById('cart-container')
     const totalPriceText = document.getElementById('total-price')
     let totalPrice = 0
@@ -77,7 +84,7 @@ const showCartItems = () => {
                                 <p class="text-[#1F2937] opacity-80">${cart.price} x 1</p>
                             </div>
                             <div>
-                                <span class="text-[#1F2937] opacity-80 cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
+                                <span onclick="removeFromCart(${cart.id})" class="text-[#1F2937] opacity-80 cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
                             </div>
 
                         </div>
