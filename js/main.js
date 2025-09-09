@@ -3,6 +3,21 @@ const getCategories = async () => {
     const data = await res.json()
     displayCategories(data.categories);
 }
+const setLoading = isLoading => {
+    if (isLoading === true) {
+        document.getElementById('loading-container').classList.remove('hidden')
+        document.getElementById('tree-container').classList.add('hidden')
+
+    }
+    else {
+        document.getElementById('loading-container').classList.add('hidden')
+        document.getElementById('tree-container').classList.remove('hidden')
+
+    }
+
+}
+
+
 getCategories()
 const displayCategories = categories => {
     const container = document.getElementById('category-container')
@@ -17,16 +32,18 @@ const displayCategories = categories => {
     });
 }
 
-const getTrees = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/plants')
-    const data = await res.json()
-    displayTrees(data.plants);
+const getTrees = () => {
+    setLoading(true)
+    fetch('https://openapi.programming-hero.com/api/plants')
+        .then(res => res.json())
+        .then(data => displayTrees(data.plants))
 }
 getTrees()
 
 const displayTrees = trees => {
     const treeContainer = document.getElementById('tree-container')
     treeContainer.textContent = ''
+
     trees.forEach(tree => {
         const div = document.createElement('div')
         div.innerHTML = `
@@ -49,6 +66,9 @@ const displayTrees = trees => {
         `
         treeContainer.append(div)
     });
+    setLoading(false)
+
+
 }
 
 let cartItems = []
@@ -61,18 +81,20 @@ const addToCart = async id => {
 }
 
 const removeFromCart = id => {
-    
     const remaining = cartItems.filter(item => item.id !== id)
     cartItems = remaining
     showCartItems()
 
 }
 
+
+
+
 const showCartItems = () => {
     const cartContainer = document.getElementById('cart-container')
     const totalPriceText = document.getElementById('total-price')
     let totalPrice = 0
-    
+
     cartContainer.textContent = ''
     cartItems.forEach(cart => {
         const div = document.createElement('div')
@@ -96,30 +118,31 @@ const showCartItems = () => {
 }
 
 const showDetails = id => {
-    
+
     fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
-    .then(res => res.json())
-    .then(data => {
-        const tree = data.plants
-        console.log(tree);
-        const modalBox = document.getElementById('modal-box')
-        modalBox.innerHTML = `
+        .then(res => res.json())
+        .then(data => {
+            const tree = data.plants
+            console.log(tree);
+            const modalBox = document.getElementById('modal-box')
+            modalBox.innerHTML = `
         <h2 class="text-2xl font-bold">${tree.name}</h2>
                     <img class="" src=${tree.image} alt="">
                     <p><span class="font-bold">Category: </span>${tree.category}</p>
                     <p><span class="font-bold">Price: </span>$${tree.price}</p>
                     <p><span class="font-bold">Description: </span>${tree.description}</p>
         `
-    })
+        })
     my_modal_5.showModal()
 }
 
 const getCategoryById = async id => {
+    setLoading(true)
     const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     const data = await res.json()
     const allCategory = document.querySelectorAll('.category')
     console.log(allCategory);
-    for(const category of allCategory){
+    for (const category of allCategory) {
         category.classList.remove('active')
     }
     const categoryBtn = document.getElementById(`category-${id}`)
@@ -152,5 +175,7 @@ const displayCategoryById = trees => {
         `
         treeContainer.append(div)
     });
+
+    setLoading(false)
 
 }

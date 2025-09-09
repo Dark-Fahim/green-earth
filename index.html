@@ -107,10 +107,15 @@
         </div>
 
     </header>
+
     <main class="bg-[#15803D1A] pt-20">
         <!-- Our trees -->
         <section class="pt-10 container">
             <h1 class="text-center text-2xl font-semibold mb-5">Choose Our Trees</h1>
+            <div id="loading-container" class="text-center justify-center items-center hidden">
+                <span class="loading loading-dots loading-lg"></span>
+                <span class="loading loading-dots loading-xl"></span>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
                 <!-- Categories -->
@@ -133,7 +138,7 @@
                     </div>
                     <div class="flex justify-between items-center p-3 mt-3">
                         <h1>Total:</h1>
-                        <p > $<span id="total-price">0</span></p>
+                        <p> $<span id="total-price">0</span></p>
                     </div>
                 </div>
                 <!-- All trees -->
