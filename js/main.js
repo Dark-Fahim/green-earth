@@ -52,7 +52,7 @@ const displayTrees = trees => {
                             <img class="w-full aspect-[4/3]" src=${tree.image} />
                         </figure>
                         <div class="card-body">
-                            <h2 onclick="showDetails(${tree.id})" class="card-title">${tree.name}</h2>
+                            <h2 onclick="showDetails(${tree.id})" class="cursor-pointer card-title">${tree.name}</h2>
                             <p>${tree.description}</p>
                             <div class="flex justify-between">
                                 <span class="bg-[#DCFCE7] text-[#15803D] p-1 rounded-lg">${tree.category}</span>
@@ -161,7 +161,7 @@ const displayCategoryById = trees => {
                             <img class="w-full aspect-[4/3]" src=${tree.image} />
                         </figure>
                         <div class="card-body">
-                            <h2 onclick="showDetails(${tree.id})" class="card-title">${tree.name}</h2>
+                            <h2 onclick="showDetails(${tree.id})" class="card-title cursor-pointer">${tree.name}</h2>
                             <p>${tree.description}</p>
                             <div class="flex justify-between">
                                 <span class="bg-[#DCFCE7] text-[#15803D] p-1 rounded-lg">${tree.category}</span>
